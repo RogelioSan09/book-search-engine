@@ -12,14 +12,14 @@ import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_ME, DELETE_BOOK } from '../utils/queries';
+import { GET_ME, REMOVE_BOOK } from '../utils/queries';
 
 const SavedBooks = () => {
   // use the useQuery hook to execute the GET_ME query on load and save it to a variable named userData
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || {};
-  // Use the useMutation() hook to execute the DELETE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function imported from the API file
-  const [deleteBook] = useMutation(DELETE_BOOK);
+  // Use the useMutation() hook to execute the REMOVE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function imported from the API file
+  const [deleteBook] = useMutation(REMOVE_BOOK);
 
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
